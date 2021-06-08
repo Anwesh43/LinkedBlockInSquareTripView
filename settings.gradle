@@ -1,0 +1,3 @@
+include ':blockinsquaretripview'
+include ':app'
+rootProject.name = "LinkedBlockInSquareTripView"
