@@ -21,7 +21,7 @@ val colors : Array<Int> = arrayOf(
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val parts : Int = 5
-val scGap : Float = 0.02f / parts
+val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
 val blockSizeFactor : Float = 15.9f
@@ -38,21 +38,27 @@ fun Canvas.drawBlockInSquareTrip(scale : Float, w : Float, h : Float, paint : Pa
     val sc4 : Float = scale.divideScale(3, parts)
     val sc5 : Float = scale.divideScale(4, parts)
     val blockSize : Float = Math.min(w, h) / blockSizeFactor
-    val bc : Float = blockSize * sc2
+    val bc : Float = blockSize * (sc2 - sc4)
     save()
     translate(w / 2, h / 2)
     save()
-    translate((w / 2 + size) * sc5, -h / 2 - size / 2 + (h / 2 + size / 2) * sc1)
+    translate(
+        (w / 2 + size * 0.6f) * sc5,
+        -h / 2 - size * 0.6f + (h / 2 + size * 0.6f) * sc1
+    )
     paint.style = Paint.Style.STROKE
     drawRect(RectF(-size / 2, -size / 2, size / 2, size / 2), paint)
     restore()
     for (j in 0..1) {
+        paint.style = Paint.Style.FILL
         save()
         scale(1f - 2 * j, 1f - 2 * j)
         for (k in 0..1) {
             save()
             translate(size / 2 - size * sc3 * (1 - k), (size / 2) - size * sc3 * k)
-            drawRect(RectF(-bc / 2, -bc / 2, bc / 2, bc / 2), paint)
+            if (bc > 0f) {
+                drawRect(RectF(-bc / 2, -bc / 2, bc / 2, bc / 2), paint)
+            }
             restore()
         }
         restore()
