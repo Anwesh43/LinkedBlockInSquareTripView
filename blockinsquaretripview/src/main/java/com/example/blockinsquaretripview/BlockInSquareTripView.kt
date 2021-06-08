@@ -218,4 +218,13 @@ class BlockInSquareTripView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BlockInSquareTripView {
+            val view : BlockInSquareTripView = BlockInSquareTripView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
