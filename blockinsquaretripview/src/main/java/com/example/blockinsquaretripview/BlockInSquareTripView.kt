@@ -69,3 +69,18 @@ fun Canvas.drawBISTNode(i : Int, scale : Float, paint : Paint) {
     drawBlockInSquareTrip(scale, w, h, paint)
 }
 
+class BlockInSquareTripView(ctx : Context) : View(ctx) {
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
+}
